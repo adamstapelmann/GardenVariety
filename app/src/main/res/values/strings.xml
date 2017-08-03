@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Garden Variety</string>
+    <string name="action_hide">hide</string>
+    <string name="title_activity_map">Map</string>
+</resources>
