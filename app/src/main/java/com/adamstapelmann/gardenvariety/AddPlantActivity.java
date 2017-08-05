@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.adamstapelmann.gardenvariety.application.MyApplication;
 import com.adamstapelmann.gardenvariety.data.Plant;
 import com.adamstapelmann.gardenvariety.location_manager.PlantLocationManager;
+import com.google.android.gms.maps.model.LatLng;
 
 import java.util.UUID;
 
@@ -29,6 +30,8 @@ public class AddPlantActivity extends AppCompatActivity implements PlantLocation
 
     public static final String KEY_ADD_PLANT = "KEY_ADD_PLANT";
     public static final int RESULT_CODE_DELETE = 101;
+
+    public static final int REQUEST_GET_LOCATION = 201;
 
     private Plant plant;
 
@@ -77,6 +80,8 @@ public class AddPlantActivity extends AppCompatActivity implements PlantLocation
         setUpBtnSave();
         setUpBtnCancel();
         setUpBtnDelete();
+        setUpBtnGetCurrentLocation();
+        setUpBtnChooseOnMap();
     }
     private void setUpEditTexts() {
         etName = (EditText) findViewById(R.id.etPlantName);
@@ -156,25 +161,51 @@ public class AddPlantActivity extends AppCompatActivity implements PlantLocation
             }
         });
     }
+    private void setUpBtnGetCurrentLocation() {
+        Button btnUseCurrentLocation = (Button) findViewById(R.id.btnGetCurrentLocation);
+        btnUseCurrentLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                canGetCurrentLocation = true;
+            }
+        });
+    }
+    private void setUpBtnChooseOnMap() {
+        Button btnChooseOnMap = (Button) findViewById(R.id.btnChooseLocationOnMap);
+        btnChooseOnMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentOpenMap = new Intent(AddPlantActivity.this, MapAddPlantActivity.class);
+
+                if (getIntent().getSerializableExtra(ViewPlantsListActivity.KEY_EDIT) != null) {
+                    intentOpenMap.putExtra(KEY_ADD_PLANT, plant.getPlantId());
+                }
+
+                startActivityForResult(intentOpenMap, REQUEST_GET_LOCATION);
+                // Handle results sent back from map fragment
+            }
+        });
+
+    }
 
     public Realm getRealm() {
         return ((MyApplication)getApplication()).getRealmPlants();
     }
 
     private void save() {
-        if (canCreate) {
-            initializeCreate();
-        }
-
-        getRealm().beginTransaction();
-
-        plant.setName(etName.getText().toString());
-        plant.setLatitude(lat);
-        plant.setLongitude(lng);
-
-        getRealm().commitTransaction();
-
         if (canSave()) {
+            if (canCreate) {
+                initializeCreate();
+            }
+
+            getRealm().beginTransaction();
+
+            plant.setName(etName.getText().toString());
+            plant.setLatitude(lat);
+            plant.setLongitude(lng);
+
+            getRealm().commitTransaction();
+
             Intent intentResult = new Intent();
             intentResult.putExtra(KEY_ADD_PLANT, plant.getPlantId());
             setResult(RESULT_OK, intentResult);
@@ -246,7 +277,6 @@ public class AddPlantActivity extends AppCompatActivity implements PlantLocation
 
     }
 
-
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == 101) {
@@ -260,6 +290,21 @@ public class AddPlantActivity extends AppCompatActivity implements PlantLocation
             } else {
                 Toast.makeText(this, "Permissions not granted", Toast.LENGTH_SHORT).show();
             }
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (resultCode) {
+            case RESULT_OK:
+                Bundle bundle = data.getParcelableExtra(MapAddPlantActivity.LOCATION_BUNDLE);
+                LatLng locationFromMap = bundle.getParcelable(MapAddPlantActivity.PLANT_LOCATION);
+                lat = locationFromMap.latitude;
+                lng = locationFromMap.longitude;
+                break;
+            case RESULT_CANCELED:
+                // do nothing?
+                break;
         }
     }
 

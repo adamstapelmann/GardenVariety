@@ -20,7 +20,7 @@ import static com.adamstapelmann.gardenvariety.R.id.recyclerViewPlants;
 public class ViewPlantsListActivity extends AppCompatActivity {
 
     public static final String KEY_EDIT = "KEY_EDIT";
-    public static final int REQUEST_EDIT_PLACE = 101;
+    public static final int REQUEST_EDIT_PLANT = 101;
     private RecyclerView recyclerView;
     private PlantListAdapter plantListAdapter;
     private int plantToEditPosition = -1;
@@ -58,7 +58,7 @@ public class ViewPlantsListActivity extends AppCompatActivity {
         plantToEditPosition = position;
 
         intentEdit.putExtra(KEY_EDIT, plantId);
-        startActivityForResult(intentEdit, REQUEST_EDIT_PLACE);
+        startActivityForResult(intentEdit, REQUEST_EDIT_PLANT);
 
     }
 
@@ -74,7 +74,7 @@ public class ViewPlantsListActivity extends AppCompatActivity {
                         .equalTo("plantId", plantId)
                         .findFirst();
 
-                if (requestCode == REQUEST_EDIT_PLACE) {
+                if (requestCode == REQUEST_EDIT_PLANT) {
                     plantListAdapter.updatePlant(plantToEditPosition, plant);
                     showSnackBarMessage("Plant edited successfully");
                 }
