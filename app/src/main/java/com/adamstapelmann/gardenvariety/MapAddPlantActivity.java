@@ -35,6 +35,7 @@ public class MapAddPlantActivity extends FragmentActivity implements OnMapReadyC
     private Plant plant;
 
     private LatLng locationToSend;
+    private String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +53,20 @@ public class MapAddPlantActivity extends FragmentActivity implements OnMapReadyC
 
             plant = getRealm().where(Plant.class).equalTo("plantId", plantId).findFirst();
             canGetLocation = false;
+
+        }
+
+        if (getIntent().getParcelableExtra("LOCATION") != null) {
+
+            Bundle bundle = getIntent().getParcelableExtra("LOCATION");
+            LatLng locationFromMap = bundle.getParcelable(PLANT_LOCATION);
+            locationToSend = locationFromMap;
+
+        }
+
+        if (getIntent().getStringExtra("PLANT_TITLE") != null) {
+
+            name = getIntent().getStringExtra("PLANT_TITLE");
 
         }
 
@@ -78,8 +93,22 @@ public class MapAddPlantActivity extends FragmentActivity implements OnMapReadyC
         mMap.getUiSettings().setAllGesturesEnabled(true);
         mMap.getUiSettings().setCompassEnabled(true);
         mMap.getUiSettings().setZoomControlsEnabled(true);
+        mMap.getUiSettings().setMyLocationButtonEnabled(true);
 
         RealmResults<Plant> plants = getRealm().where(Plant.class).findAll();
+
+        if (locationToSend != null) {
+            markerOptions = new MarkerOptions()
+                    .position(locationToSend)
+                    .draggable(true)
+                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN));
+            if (name != null) {
+                markerOptions = markerOptions.title(name);
+            }
+
+            mMap.addMarker(markerOptions);
+
+        }
 
         for (Plant plant : plants) {
             LatLng location = new LatLng(plant.getLatitude(), plant.getLongitude());
@@ -114,6 +143,8 @@ public class MapAddPlantActivity extends FragmentActivity implements OnMapReadyC
 
                     markerOptions.title(plant.getName());
 
+                } else if (name != null) {
+                    markerOptions.title(name);
                 }
 
                 if (marker != null) {

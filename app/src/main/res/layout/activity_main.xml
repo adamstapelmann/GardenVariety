@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#a3d27f"
     tools:context="com.adamstapelmann.gardenvariety.MainActivity">
 
     <TextView
@@ -19,28 +20,53 @@
 
     <LinearLayout
         android:orientation="vertical"
+        android:layout_marginTop="55dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/tvMainTitle"
         android:layout_width="180dp"
         android:layout_height="wrap_content">
 
-        <Button
-            android:id="@+id/btnMap"
-            android:text="Map"
+        <LinearLayout
+            android:paddingBottom="20dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content">
 
-        <Button
-            android:id="@+id/btnViewPlants"
-            android:text="Saved Plants"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/btnMap"
+                android:text="Map"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-        <Button
-            android:id="@+id/btnAddPlant"
-            android:text="Add Plant"
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:paddingBottom="20dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content">
+
+
+            <Button
+                android:id="@+id/btnViewPlants"
+                android:text="Saved Plants"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/btnAddPlant"
+                android:text="Add Plant"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+        </LinearLayout>
+
 
 
     </LinearLayout>

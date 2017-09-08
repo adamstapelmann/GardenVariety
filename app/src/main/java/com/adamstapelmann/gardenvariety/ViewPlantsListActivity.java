@@ -86,10 +86,6 @@ public class ViewPlantsListActivity extends AppCompatActivity {
                 String delPlaceId  = data.getStringExtra(
                         AddPlantActivity.KEY_ADD_PLANT);
 
-//                if (plantListAdapter.getPlaceByKey(delPlaceId).hasPlacePicture()){
-//
-//                    removePlacePictureFromFirebase(delPlaceId);
-//                }
                 plantListAdapter.removePlantByKey(delPlaceId);
                 break;
         }

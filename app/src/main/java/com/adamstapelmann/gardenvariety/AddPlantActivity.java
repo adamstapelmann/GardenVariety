@@ -179,10 +179,21 @@ public class AddPlantActivity extends AppCompatActivity implements PlantLocation
 
                 if (getIntent().getSerializableExtra(ViewPlantsListActivity.KEY_EDIT) != null) {
                     intentOpenMap.putExtra(KEY_ADD_PLANT, plant.getPlantId());
+                } else {
+                    if (!TextUtils.isEmpty(etName.getText().toString())) {
+
+                        intentOpenMap.putExtra("PLANT_TITLE", etName.getText().toString());
+                    }
+
+                    Bundle args = new Bundle();
+                    LatLng location = new LatLng(lat, lng);
+                    args.putParcelable(MapAddPlantActivity.PLANT_LOCATION, location);
+                    intentOpenMap.putExtra("LOCATION", args);
+
                 }
 
                 startActivityForResult(intentOpenMap, REQUEST_GET_LOCATION);
-                // Handle results sent back from map fragment
+
             }
         });
 
