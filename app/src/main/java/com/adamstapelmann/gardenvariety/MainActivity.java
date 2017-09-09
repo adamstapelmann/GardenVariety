@@ -13,8 +13,6 @@ import io.realm.Realm;
 
 public class MainActivity extends AppCompatActivity {
 
-    int REQUEST_ADD_PLANT = 101;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

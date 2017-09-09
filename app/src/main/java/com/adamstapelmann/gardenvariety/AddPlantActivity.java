@@ -180,18 +180,22 @@ public class AddPlantActivity extends AppCompatActivity implements PlantLocation
                 if (getIntent().getSerializableExtra(ViewPlantsListActivity.KEY_EDIT) != null) {
                     intentOpenMap.putExtra(KEY_ADD_PLANT, plant.getPlantId());
                 } else {
-                    if (!TextUtils.isEmpty(etName.getText().toString())) {
 
-                        intentOpenMap.putExtra("PLANT_TITLE", etName.getText().toString());
-                    }
 
-                    Bundle args = new Bundle();
-                    LatLng location = new LatLng(lat, lng);
-                    args.putParcelable(MapAddPlantActivity.PLANT_LOCATION, location);
-                    intentOpenMap.putExtra("LOCATION", args);
+//                    Bundle args = new Bundle();
+//                    LatLng location = new LatLng(lat, lng);
+//                    args.putParcelable(MapAddPlantActivity.PLANT_LOCATION, location);
+//                    intentOpenMap.putExtra("LOCATION", args);
 
                 }
+                if (!TextUtils.isEmpty(etName.getText().toString())) {
 
+                    intentOpenMap.putExtra("PLANT_TITLE", etName.getText().toString());
+                }
+                Bundle args = new Bundle();
+                LatLng locationToSend = new LatLng(lat, lng);
+                args.putParcelable(MapAddPlantActivity.PLANT_LOCATION, locationToSend);
+                intentOpenMap.putExtra(MapAddPlantActivity.LOCATION_BUNDLE, args);
                 startActivityForResult(intentOpenMap, REQUEST_GET_LOCATION);
 
             }
@@ -254,6 +258,7 @@ public class AddPlantActivity extends AppCompatActivity implements PlantLocation
         lng = plant.getLongitude();
 
     }
+
 
     @Override
     public void onNewLocation(Location location) {

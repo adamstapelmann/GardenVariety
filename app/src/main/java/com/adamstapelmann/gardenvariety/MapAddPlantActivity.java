@@ -56,9 +56,9 @@ public class MapAddPlantActivity extends FragmentActivity implements OnMapReadyC
 
         }
 
-        if (getIntent().getParcelableExtra("LOCATION") != null) {
+        if (getIntent().getParcelableExtra(LOCATION_BUNDLE) != null) {
 
-            Bundle bundle = getIntent().getParcelableExtra("LOCATION");
+            Bundle bundle = getIntent().getParcelableExtra(LOCATION_BUNDLE);
             LatLng locationFromMap = bundle.getParcelable(PLANT_LOCATION);
             locationToSend = locationFromMap;
 
@@ -105,8 +105,9 @@ public class MapAddPlantActivity extends FragmentActivity implements OnMapReadyC
             if (name != null) {
                 markerOptions = markerOptions.title(name);
             }
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(locationToSend));
 
-            mMap.addMarker(markerOptions);
+            marker = mMap.addMarker(markerOptions);
 
         }
 
@@ -117,12 +118,6 @@ public class MapAddPlantActivity extends FragmentActivity implements OnMapReadyC
                     .title(plant.getName());
 
             if (this.plant != null && this.plant.getPlantId().equals(plant.getPlantId())) {
-                markerOptions.draggable(true)
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_CYAN));
-                marker = mMap.addMarker(markerOptions);
-                mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
-                locationToSend = location;
-
             } else {
                 mMap.addMarker(markerOptions);
             }
@@ -150,7 +145,7 @@ public class MapAddPlantActivity extends FragmentActivity implements OnMapReadyC
                 if (marker != null) {
                     marker.remove();
                 }
-
+                locationToSend = latLng;
                 marker = mMap.addMarker(markerOptions);
             }
         });
@@ -192,6 +187,13 @@ public class MapAddPlantActivity extends FragmentActivity implements OnMapReadyC
 
     @Override
     public void finish() {
+
+        sendPlantLocation();
+
+        super.finish();
+    }
+
+    private void sendPlantLocation() {
         Intent intentResult = new Intent();
 
         if (marker != null) {
@@ -202,7 +204,5 @@ public class MapAddPlantActivity extends FragmentActivity implements OnMapReadyC
         } else {
             setResult(RESULT_CANCELED, intentResult);
         }
-
-        super.finish();
     }
 }
