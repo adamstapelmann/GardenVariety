@@ -29,7 +29,8 @@
         <activity
             android:name=".AddPlantActivity"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".ViewPlantsListActivity" />
+        <activity android:name=".ViewPlantsListActivity"
+            android:parentActivityName=".MainActivity"/>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

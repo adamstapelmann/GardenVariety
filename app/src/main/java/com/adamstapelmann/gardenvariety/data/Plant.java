@@ -1,5 +1,6 @@
 package com.adamstapelmann.gardenvariety.data;
 
+import java.util.Comparator;
 import java.util.Date;
 
 import io.realm.RealmObject;
@@ -83,4 +84,13 @@ public class Plant extends RealmObject{
     public void setPictureUploaded(boolean pictureUploaded) {
         this.pictureUploaded = pictureUploaded;
     }
+
+    public static class CompareName implements Comparator<Plant> {
+        public int compare(Plant a, Plant b) {
+            return a.getName().compareTo(b.getName());
+        }
+
+    }
+
+
 }

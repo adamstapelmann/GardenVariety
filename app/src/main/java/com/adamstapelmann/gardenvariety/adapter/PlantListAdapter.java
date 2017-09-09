@@ -16,6 +16,7 @@ import com.adamstapelmann.gardenvariety.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 import io.realm.Realm;
 import io.realm.RealmResults;
@@ -27,7 +28,7 @@ public class PlantListAdapter extends RecyclerView.Adapter<PlantListAdapter.View
     private Context context;
     private Realm realm;
 
-    public PlantListAdapter (Context context, Realm realm) {
+    public PlantListAdapter(Context context, Realm realm) {
         this.context = context;
         this.realm = realm;
 
@@ -48,7 +49,7 @@ public class PlantListAdapter extends RecyclerView.Adapter<PlantListAdapter.View
     }
 
     public void remove(int position) {
-        ((ViewPlantsListActivity)context).deletePlant(plants.get(position));
+        ((ViewPlantsListActivity) context).deletePlant(plants.get(position));
         plants.remove(position);
         notifyItemRemoved(position);
     }
@@ -61,12 +62,17 @@ public class PlantListAdapter extends RecyclerView.Adapter<PlantListAdapter.View
     public void removePlantByKey(String plantId) {
         for (int i = 0; i < plants.size(); i++) {
             if (plants.get(i).getPlantId().equals(plantId)) {
-                ((ViewPlantsListActivity)context).deletePlant(plants.get(i));
+                ((ViewPlantsListActivity) context).deletePlant(plants.get(i));
                 plants.remove(i);
                 notifyItemRemoved(i);
                 return;
             }
         }
+    }
+
+    public void sortByName() {
+        Collections.sort(plants, new Plant.CompareName());
+        notifyDataSetChanged();
     }
 
     @Override
@@ -90,7 +96,7 @@ public class PlantListAdapter extends RecyclerView.Adapter<PlantListAdapter.View
         holder.btnDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((ViewPlantsListActivity)context).showPlantDetails(
+                ((ViewPlantsListActivity) context).showPlantDetails(
                         plants.get(position).getPlantId(),
                         holder.getAdapterPosition()
                 );
@@ -106,9 +112,9 @@ public class PlantListAdapter extends RecyclerView.Adapter<PlantListAdapter.View
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-         TextView name;
-         Button btnDetails;
-         ImageView thumbnail;
+        TextView name;
+        Button btnDetails;
+        ImageView thumbnail;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -119,7 +125,6 @@ public class PlantListAdapter extends RecyclerView.Adapter<PlantListAdapter.View
 
         }
     }
-
 
 
 }
