@@ -15,6 +15,8 @@ public class Plant extends RealmObject{
     private String name;
     private Date pickUpDate;
 
+    private String plantType, description, date;
+
     private double latitude, longitude;
 
     private String pictureURL;
@@ -51,6 +53,30 @@ public class Plant extends RealmObject{
 
     public void setPickUpDate(Date pickUpDate) {
         this.pickUpDate = pickUpDate;
+    }
+
+    public String getPlantType() {
+        return plantType;
+    }
+
+    public void setPlantType(String plantType) {
+        this.plantType = plantType;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public double getLatitude() {

@@ -35,7 +35,7 @@ public class AddPlantActivity extends AppCompatActivity implements PlantLocation
 
     private Plant plant;
 
-    private EditText etName;
+    private EditText etName, etDate, etPlantType, etDescription;
 
     private boolean canCreate;
 
@@ -85,6 +85,9 @@ public class AddPlantActivity extends AppCompatActivity implements PlantLocation
     }
     private void setUpEditTexts() {
         etName = (EditText) findViewById(R.id.etPlantName);
+        etDate = (EditText) findViewById(R.id.etPlantDate);
+        etPlantType = (EditText) findViewById(R.id.etPlantType);
+        etDescription = (EditText) findViewById(R.id.etPlantDescription);
     }
 
     private void setUpIvSavePicture() {
@@ -216,6 +219,10 @@ public class AddPlantActivity extends AppCompatActivity implements PlantLocation
             getRealm().beginTransaction();
 
             plant.setName(etName.getText().toString());
+            plant.setPlantType(etPlantType.getText().toString());
+            plant.setDescription(etDescription.getText().toString());
+            plant.setDate(etDate.getText().toString());
+
             plant.setLatitude(lat);
             plant.setLongitude(lng);
 
@@ -253,6 +260,9 @@ public class AddPlantActivity extends AppCompatActivity implements PlantLocation
                 .findFirst();
 
         etName.setText(plant.getName());
+        etDate.setText(plant.getDate());
+        etPlantType.setText(plant.getPlantType());
+        etDescription.setText(plant.getDescription());
 
         lat = plant.getLatitude();
         lng = plant.getLongitude();
