@@ -184,7 +184,6 @@ public class MapAddPlantActivity extends FragmentActivity implements OnMapReadyC
 
     }
 
-
     @Override
     public void finish() {
 

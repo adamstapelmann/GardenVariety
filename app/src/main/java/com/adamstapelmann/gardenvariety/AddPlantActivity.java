@@ -275,18 +275,11 @@ public class AddPlantActivity extends AppCompatActivity implements PlantLocation
 
     private void requestNeededPermission() {
 
-        Log.i("permissionmethod","method");
-
         if ((ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) ==
                 PackageManager.PERMISSION_GRANTED)) {
-
-            Log.i("START MONITORING","monitoring");
             plantLocationManager.startLocationMonitoring(this);
 
         }else{
-            Log.i("REQUEST PERM","requesting");
-
-
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                     101);
         }
@@ -297,14 +290,10 @@ public class AddPlantActivity extends AppCompatActivity implements PlantLocation
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == 101) {
             if (grantResults.length > 0 &&
-                    grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1]==PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(this, "Permissions granted", Toast.LENGTH_SHORT).show();
+                    grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, "Permission granted", Toast.LENGTH_SHORT).show();
                 plantLocationManager.startLocationMonitoring(this);
 
-                Log.i("PERMISSIONS GRANTED", "granted");
-
-            } else {
-                Toast.makeText(this, "Permissions not granted", Toast.LENGTH_SHORT).show();
             }
         }
     }

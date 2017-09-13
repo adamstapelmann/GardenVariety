@@ -2,19 +2,15 @@ package com.adamstapelmann.gardenvariety;
 
 import android.content.Intent;
 import android.support.design.widget.Snackbar;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.adamstapelmann.gardenvariety.adapter.PlantListAdapter;
 import com.adamstapelmann.gardenvariety.application.MyApplication;
@@ -23,7 +19,6 @@ import com.adamstapelmann.gardenvariety.data.Plant;
 import io.realm.Realm;
 
 import static com.adamstapelmann.gardenvariety.R.id.recyclerViewPlants;
-import static com.adamstapelmann.gardenvariety.R.id.tbSortPlants;
 
 public class ViewPlantsListActivity extends AppCompatActivity {
 
