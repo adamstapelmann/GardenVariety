@@ -74,7 +74,6 @@ public class AddPlantActivity extends AppCompatActivity implements PlantLocation
     private void setUpImageViews() {
         setUpIvSavePicture();
         setUpIvViewPictures();
-        setUpIvViewMap();
     }
     private void setUpBtns() {
         setUpBtnSave();
@@ -108,15 +107,7 @@ public class AddPlantActivity extends AppCompatActivity implements PlantLocation
             }
         });
     }
-    private void setUpIvViewMap() {
-        ImageView ivViewMap = (ImageView) findViewById(R.id.ivViewMap);
-        ivViewMap.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // launch activity to view map
-            }
-        });
-    }
+
 
     private void setUpBtnSave() {
         Button btnSave = (Button) findViewById(R.id.btnSavePlant);
@@ -165,7 +156,7 @@ public class AddPlantActivity extends AppCompatActivity implements PlantLocation
         });
     }
     private void setUpBtnGetCurrentLocation() {
-        Button btnUseCurrentLocation = (Button) findViewById(R.id.btnGetCurrentLocation);
+        ImageView btnUseCurrentLocation = (ImageView) findViewById(R.id.btnGetCurrentLocation);
         btnUseCurrentLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -174,7 +165,7 @@ public class AddPlantActivity extends AppCompatActivity implements PlantLocation
         });
     }
     private void setUpBtnChooseOnMap() {
-        Button btnChooseOnMap = (Button) findViewById(R.id.btnChooseLocationOnMap);
+        ImageView btnChooseOnMap = (ImageView) findViewById(R.id.btnChooseLocationOnMap);
         btnChooseOnMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

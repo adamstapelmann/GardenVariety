@@ -112,14 +112,14 @@ public class PlantListAdapter extends RecyclerView.Adapter<PlantListAdapter.View
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView name;
-        Button btnDetails;
+        ImageView btnDetails;
         ImageView thumbnail;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
             name = (TextView) itemView.findViewById(R.id.tvPlantName);
-            btnDetails = (Button) itemView.findViewById(R.id.btnPlantDetails);
+            btnDetails = (ImageView) itemView.findViewById(R.id.btnPlantDetails);
             thumbnail = (ImageView) itemView.findViewById(R.id.ivThumbnail);
 
         }

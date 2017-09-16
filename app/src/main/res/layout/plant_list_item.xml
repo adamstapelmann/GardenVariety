@@ -19,9 +19,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <Button
+    <ImageView
         android:id="@+id/btnPlantDetails"
-        android:text="View Details"
+        android:src="@drawable/ic_mode_edit_black_36dp"
+        android:paddingRight="10dp"
+        android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
