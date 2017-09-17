@@ -17,6 +17,7 @@
 
         <android.support.design.widget.AppBarLayout
             android:id="@+id/abViewPlants"
+            android:backgroundTint="@color/material_primary_dark"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fitsSystemWindows="true">
@@ -24,6 +25,7 @@
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/tbSortPlants"
+                app:titleTextColor="@color/material_primary_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 

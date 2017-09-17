@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#a3d27f"
     tools:context="com.adamstapelmann.gardenvariety.MainActivity">
 
     <TextView
@@ -15,7 +14,7 @@
         android:paddingBottom="80dp"
         android:text="Garden Variety"
         android:textSize="32sp"
-        android:textColor="#458c18"
+        android:textColor="@color/material_primary_text"
         android:layout_centerHorizontal="true"/>
 
     <LinearLayout
@@ -23,7 +22,7 @@
         android:layout_marginTop="55dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/tvMainTitle"
-        android:layout_width="180dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content">
 
         <LinearLayout
@@ -31,11 +30,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <Button
+            <com.rey.material.widget.Button
                 android:id="@+id/btnMap"
+                android:backgroundTint="@color/material_primary"
                 android:text="Map"
+                android:textColor="@color/material_primary_text"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="48dp" />
 
         </LinearLayout>
 
@@ -46,11 +47,13 @@
             android:layout_height="wrap_content">
 
 
-            <Button
+            <com.rey.material.widget.Button
                 android:id="@+id/btnViewPlants"
+                android:backgroundTint="@color/material_primary"
                 android:text="Saved Plants"
+                android:textColor="@color/material_primary_text"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="48dp" />
 
         </LinearLayout>
 
@@ -58,11 +61,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <Button
+            <com.rey.material.widget.Button
                 android:id="@+id/btnAddPlant"
+                android:backgroundTint="@color/material_primary"
                 android:text="Add Plant"
+                android:textColor="@color/material_primary_text"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="48dp" />
 
 
         </LinearLayout>

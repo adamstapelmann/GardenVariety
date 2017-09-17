@@ -160,6 +160,7 @@ public class AddPlantActivity extends AppCompatActivity implements PlantLocation
         btnUseCurrentLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(AddPlantActivity.this, "Using current location", Toast.LENGTH_SHORT).show();
                 canGetCurrentLocation = true;
             }
         });
