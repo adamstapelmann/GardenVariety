@@ -234,6 +234,7 @@ public class AddPlantActivity extends AppCompatActivity implements PlantLocation
         if (TextUtils.isEmpty(etName.getText())) {
             canSave = false;
             etName.setError("Field required");
+            etName.requestFocus();
         }
 
         return canSave;

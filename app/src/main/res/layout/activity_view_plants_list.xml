@@ -12,7 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
-        android:overScrollMode="never"
         tools:context=".ViewPlantsListActivity">
 
         <android.support.design.widget.AppBarLayout
@@ -37,6 +36,7 @@
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerViewPlants"
+            android:overScrollMode="ifContentScrolls"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/abViewPlants"/>

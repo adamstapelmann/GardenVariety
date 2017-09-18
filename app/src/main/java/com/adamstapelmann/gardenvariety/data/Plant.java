@@ -113,7 +113,7 @@ public class Plant extends RealmObject{
 
     public static class CompareName implements Comparator<Plant> {
         public int compare(Plant a, Plant b) {
-            return a.getName().compareTo(b.getName());
+            return a.getName().toLowerCase().compareTo(b.getName().toLowerCase());
         }
 
     }
